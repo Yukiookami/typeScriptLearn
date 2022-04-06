@@ -1,7 +1,7 @@
 /*
  * @Author: zxy
  * @Date: 2022-04-06 11:13:18
- * @LastEditTime: 2022-04-06 11:27:14
+ * @LastEditTime: 2022-04-06 11:31:26
  * @FilePath: /learnTypeScript/basic-types.ts
  */
 let isDone: boolean = false
