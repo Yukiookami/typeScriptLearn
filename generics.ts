@@ -1,7 +1,7 @@
 /*
  * @Author: zxy
  * @Date: 2022-04-06 11:50:50
- * @LastEditTime: 2022-04-06 12:02:03
+ * @LastEditTime: 2022-04-06 12:14:51
  * @FilePath: /learnTypeScript/generics.ts
  */
 // 泛型是为了不丢失类型而出现的
@@ -45,3 +45,62 @@ const arrs2 = echoWithLength('2313')
 const arrs3 = echoWithLength({length: 10})
 const arrs4 = echoWithLength([1, 2, 3])
 // const arrs5 = echoWithLength(123) error
+
+// 泛型和类
+class Queue<T> {
+  private data = []
+  
+  push (item: T) {
+    return this.data.push(item)
+  }
+
+  pop (): T {
+    return this.data.shift()
+  }
+}
+
+const queue = new Queue <number> ()
+
+queue.push(1)
+// queue.push('str') error
+
+console.log(queue.pop().toFixed())
+
+const queue2 = new Queue <string> ()
+
+// queue2.push(1) error
+queue2.push('str')
+
+console.log(queue.pop().toLocaleString())
+
+// 泛型与接口
+interface KeyPair <T, U> {
+  key: T,
+  value: U
+}
+
+let kp1: KeyPair <string, number> = {
+  key: '123',
+  value: 123
+}
+
+let kp2: KeyPair <number, string> = {
+  key: 123,
+  value: '123'
+}
+
+// 利用这个方式也可以用来描述函数
+interface IPlus <T> {
+  (a: T, b: T): T
+}
+
+const addFI = function add (x: number, y: number): number {
+  return  x + y
+}
+
+const addFIStr = function add (x: string, y: string): string {
+  return  x + y
+}
+
+const addFI2: IPlus <number> = addFI
+const addFIStr2: IPlus <string> = addFIStr
